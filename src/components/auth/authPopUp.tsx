@@ -17,7 +17,7 @@ const AuthPopUp = ({ className, children, ...rest }: AuthPopUpProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className={cn("trigger-wrapper", className)} {...rest}>
+        <div className={cn(className)} {...rest}>
           {children}
         </div>
       </DialogTrigger>
