@@ -9,10 +9,12 @@ import { useRefreshLogin } from "./hooks/use-refresh-login";
 import { useAppSelector } from "./hooks/redux";
 import { useCallback, useEffect } from "react";
 import WelcomeCard, { CardSkeleton } from "./components/home/welcomeCard";
+import UsageCard from "./components/home/usageCard";
 
 const App = () => {
   const pollsState = useAppSelector((state) => state.polls);
   const authUserState = useAppSelector((state) => state.authUser);
+  const generalSettingsState = useAppSelector((state) => state.generalSettings);
   const { refreshLogin } = useRefreshLogin();
   const { fetchPolls } = useFetchPolls();
   useTitle("Poll Next");
@@ -40,13 +42,14 @@ const App = () => {
           )}
           {authUserState.loading ? <CardSkeleton /> : <SponsorCard />}
         </div>
-        <div className="mt-4">
-          {pollsState.loading ? (
-            <PollsSkeleton />
-          ) : (
-            <Polls polls={pollsState.list} />
-          )}
+        <div className="my-4">
+          {generalSettingsState.showUsageGuideCard && <UsageCard />}
         </div>
+        {pollsState.loading ? (
+          <PollsSkeleton />
+        ) : (
+          <Polls polls={pollsState.list} />
+        )}
       </Container>
     </>
   );
