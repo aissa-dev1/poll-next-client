@@ -54,6 +54,18 @@ class PollsFetch {
     );
     return axiosRes;
   }
+
+  async deleteOne(id: string, token: string) {
+    const axiosRes = await axios.delete(
+      `${import.meta.env.VITE_API_URL}/polls/${id}`,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+    return axiosRes;
+  }
 }
 
 export const pollsFetch = new PollsFetch();
