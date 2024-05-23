@@ -2,6 +2,7 @@ import { useAppDispatch } from "./redux";
 import { usersFetch } from "@/api/users-fetch";
 import { authUserSliceActions } from "@/features/auth-user";
 import { UserTypeWithPolls } from "@/features/types";
+import { storage } from "@/utils/storage";
 import { useCallback } from "react";
 
 export function useRefreshLogin() {
@@ -23,6 +24,7 @@ export function useRefreshLogin() {
       dispatch(authUserSliceActions.login(data));
       dispatch(authUserSliceActions.stopLoading());
     } catch (error: any) {
+      storage.remove("token");
       dispatch(authUserSliceActions.logout());
       dispatch(authUserSliceActions.stopLoading());
     }
