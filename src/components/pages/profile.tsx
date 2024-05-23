@@ -62,7 +62,7 @@ const Profile = () => {
             </div>
           ) : (
             <div className="flex items-center gap-4">
-              <div className="bg-black rounded-full w-fit">
+              <div className="border rounded-full w-fit border-secondary">
                 <img
                   className="w-24"
                   src={`/user-avatars/${profileState.avatar}`}
