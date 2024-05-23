@@ -33,6 +33,7 @@ import ShareIcon from "../icons/shareIcon";
 import ShareSolidIcon from "../icons/shareSolidIcon";
 import { useFetchRandomPoll } from "@/hooks/use-fetch-random-poll";
 import { useFetchPolls } from "@/hooks/use-fetch-polls";
+import DeletePollDialog from "../polls/deletePollDialog";
 
 const Poll = () => {
   const pollsState = useAppSelector((state) => state.polls);
@@ -102,18 +103,23 @@ const Poll = () => {
                     <Skeleton className="w-[100px] h-[20px] rounded" />
                   </div>
                 ) : (
-                  <Link
-                    className="flex items-center gap-2 w-fit"
-                    to={`/profile/${pollOwner._id}`}
-                  >
-                    <IconButton
-                      avatarImage={`/user-avatars/${pollOwner.avatar}`}
-                      avatarFallback={pollOwner.fullName
-                        .slice(0, 2)
-                        .toUpperCase()}
-                    />
-                    <p>{pollOwner.fullName}</p>
-                  </Link>
+                  <div className="flex items-center justify-between">
+                    <Link
+                      className="flex items-center gap-2 w-fit"
+                      to={`/profile/${pollOwner._id}`}
+                    >
+                      <IconButton
+                        avatarImage={`/user-avatars/${pollOwner.avatar}`}
+                        avatarFallback={pollOwner.fullName
+                          .slice(0, 2)
+                          .toUpperCase()}
+                      />
+                      <p>{pollOwner.fullName}</p>
+                    </Link>
+                    {authUserState._id === pollOwner._id && (
+                      <DeletePollDialog />
+                    )}
+                  </div>
                 )}
               </CardTitle>
               <CardDescription>{pollState.question}</CardDescription>
@@ -219,7 +225,7 @@ const Poll = () => {
                   <ShareIcon
                     onClick={async () => {
                       await copyText(
-                        `http://localhost:5173/polls/${pollState._id}`
+                        `${window.location.host}/polls/${pollState._id}`
                       );
                     }}
                   />
