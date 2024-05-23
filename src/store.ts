@@ -6,6 +6,8 @@ import { loginSliceReducer } from "./features/login";
 import { pollSliceReducer } from "./features/poll";
 import { profileSliceReducer } from "./features/profile";
 import { createPollSliceReducer } from "./features/create-poll";
+import { generalSettingsSliceReducer } from "./features/general-settings";
+import { changePasswordSliceReducer } from "./features/change-password";
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +18,8 @@ export const store = configureStore({
     poll: pollSliceReducer,
     profile: profileSliceReducer,
     createPoll: createPollSliceReducer,
+    generalSettings: generalSettingsSliceReducer,
+    changePassword: changePasswordSliceReducer,
   },
 });
 
