@@ -58,6 +58,9 @@ const authUserSlice = createSlice({
     updateFullName(state, action: PayloadAction<string>) {
       state.fullName = action.payload;
     },
+    updateAvatar(state, action: PayloadAction<string>) {
+      state.avatar = action.payload;
+    },
     updateBio(state, action: PayloadAction<string>) {
       state.bio = action.payload;
     },
