@@ -26,3 +26,13 @@ export type VotePollOptionData = {
   fanId: string;
   index: number;
 };
+
+export type ChangePasswordData = {
+  currentPassword: string;
+  newPassword: string;
+  rnewPassword: string;
+};
+
+export type DeleteAccountData = {
+  password: string;
+};
