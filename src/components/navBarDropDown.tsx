@@ -20,7 +20,13 @@ const NavBarDropDown = () => {
     <DropdownMenu>
       <DropdownMenuTrigger className="flex items-center justify-center border rounded-full shadow-sm border-input bg-background hover:bg-accent hover:text-accent-foreground">
         <Avatar>
-          <AvatarImage src="/user-avatars/user-avatar-default.svg" />
+          <AvatarImage
+            src={
+              authUserState.authenticated
+                ? `/user-avatars/${authUserState.avatar}`
+                : "/user-avatars/user-avatar-default.svg"
+            }
+          />
           <AvatarFallback>You</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
